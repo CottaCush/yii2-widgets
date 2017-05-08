@@ -1,56 +1,81 @@
-(function (w, $, toastr) {
-    /* Default properties and their values for notification items */
-    var ITEM_DEFAULTS = {
-            type: 'success',
-            message: '',
-            title: ''
+/**
+ * Notifications component
+ * This component should:
+ *  - provide an API to show different types of Toastr notifications; and
+ *  - show flash notifications on page load.
+ *
+ * The flash notifications is configured as an array of objects where each object is a notification.
+ * A notification object looks like:
+ * {
+ *     type: '',    {string} valid toastr notification types: 'success', 'error', 'info', or 'warning'
+ *     message: '', {string} the notification message
+ *     title: '',   {string} (optional) the notification title
+ *     timeout: ''  {number} (optional) toastr timeout duration (in ms)
+ * }
+ */
+;var Notification = (function ($, toastr, flashNotifications) {
+    /* Toastr option overrides */
+    var OVERRIDES = {
+        closeButton: true,
+        newestOnTop: true,
+        preventDuplicates: true,
+        timeout: 10000
+    };
+
+    /* Extend toastr.options with our defined overrides here */
+    $.extend(toastr.options, OVERRIDES);
+
+    showFlashNotifications();
+
+    return {
+        add: add,
+        success: function (message, title, options) {
+            add('success', message, title, options);
         },
-        /* Toastr option default overrides */
-        TOASTR_DEFAULTS = {
-            closeButton: true,
-            newestOnTop: true,
-            preventDuplicates: true,
-            timeout: 10000
-        };
+        error: function (message, title, options) {
+            add('error', message, title, options);
+        },
+        info: function (message, title, options) {
+            add('info', message, title, options);
+        },
+        warning: function (message, title, options) {
+            add('warning', message, title, options);
+        }
+    };
 
-    /* Extend toastr.options with our defined defaults here */
-    $.extend(toastr.options, TOASTR_DEFAULTS);
 
+    /**
+     * Show flash notifications on page load.
+     */
+    function showFlashNotifications() {
+        var i = 0, l = flashNotifications.length;
 
-    var items = w.notifications || [],
-        i = 0, l = items.length;
+        for (i; i < l; i++) {
+            var item = flashNotifications[i];
+            var type = item.type, message = item.message || '', title = item.title || '', timeout = item.timeout,
+                options = {};
 
-    for (i; i < l; i++) {
-        var item = $.extend({}, ITEM_DEFAULTS, items[i]);
-        addNotification(item);
+            /* Add timeout to the options object if it exists */
+            if ('undefined' !== typeof timeout) {
+                options.timeout = timeout;
+            }
+
+            add(type, message, title, options);
+        }
     }
 
     /**
      * Add a new notification to Toastr
-     * @param {object} item contains info for a new toastr notification.
-     * A default  item object looks like this
-     * {
-     *     type: '', (valid types are: "success", "error", "info", or "warning")
-     *     message: '', the notification message.
-     *     title: '', (the notification title. Can be left empty.)
-     *     timeout: '' (number, optional and is passed into the toastr function)
-     * }
+     * @param {string} type valid types for toastr: 'success', 'error', 'info', or 'warning'.
+     * @param {string} message the notification message.
+     * @param {string} title optional notification title
+     * @param {object} options further options to pass into toastr
      */
-    function addNotification(item) {
-        var type = item.type,
-            title = item.title,
-            message = item.message,
-            timeout = item.timeout,
-            options = {};
-
-        /* Add timeout to the options object if it exists */
-        if ('undefined' !== typeof timeout) {
-            options.timeout = timeout;
-        }
-
+    function add(type, message, title, options) {
         /* Call the toastr function if it exists */
         if ('function' === typeof toastr[type]) {
             toastr[type](message, title, options);
         }
     }
-})(window, jQuery, toastr);
+})(jQuery, toastr, window.notifications || []);
+
