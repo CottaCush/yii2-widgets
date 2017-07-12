@@ -84,4 +84,32 @@ class Html extends YiiHtml
         $options['prefix'] = 'glyphicon glyphicon-';
         return static::baseIcon($name, $options);
     }
+
+    /**
+     * Add an SVG image with the option of providing a fallback image. This is useful when you want to use SVG images,
+     * but still provide fallback support for browsers that don't support SVG, like IE8 and below.
+     * @param array|string $src the source of the element. To be processed by [[Url::to()]]
+     * @param array $options options to be passed into the image tag, including two special properties:
+     *   - 'fallback': bool|string the fallback image to use. If set to true, replace the image url extension with fallbackExt.
+     *   - 'fallbackExt' string the fallback extension, default is 'png'.
+     * @return string
+     * @see YiiHtml::img()
+     */
+    public static function svgImg($src, $options = [])
+    {
+        $fallback = ArrayHelper::getValue($options, 'fallback', true);
+        $fallbackExt = ArrayHelper::getValue($options, 'fallbackExt', 'png');
+
+        if ($fallback) {
+            if (is_bool($fallback) && is_string($src)) {
+                $fallback = rtrim($src, 'svg') . $fallbackExt;
+                $options['onerror'] = "this.src = '$fallback'; this.onerror = '';";
+            }
+            else if (is_string($fallback)) {
+                $options['onerror'] = "this.src = '$fallback'; this.onerror = '';";
+            }
+        }
+
+        return self::img($src, $options);
+    }
 }
