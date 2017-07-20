@@ -54,7 +54,6 @@ class BaseModalWidget extends BaseWidget
 
     public function renderContents()
     {
-
     }
 
     public function endForm()
