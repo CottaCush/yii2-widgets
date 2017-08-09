@@ -1,0 +1,36 @@
+{
+  "name": "cottacush-yii2-widgets",
+  "version": "1.0.0",
+  "description": "Custom Yii2 Widgets by Cotta&Cush",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ghttps://github.com/CottaCush/yii2-widgets"
+  },
+  "author": "Cotta & Cush Developers <developers@cottacush.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/CottaCush/yii2-widgets/blob/master/README.md",
+  "dependencies": {
+    "autoprefixer": "^6.7.7",
+    "bower": "^1.8.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-cli": "^1.2.2",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-environments": "^0.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-less": "^3.3.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.1"
+  }
+}
