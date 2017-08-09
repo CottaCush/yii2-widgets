@@ -14,7 +14,7 @@ class DropzoneImageUploadAsset extends LocalAssetBundle
     ];
 
     public $css = [
-        'css/dropzone-image-upload.js'
+        'css/dropzone-image-upload.css'
     ];
 
     public $depends = [

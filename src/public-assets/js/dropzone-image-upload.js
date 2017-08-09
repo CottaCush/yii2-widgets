@@ -4,9 +4,6 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
         dropzoneTarget: $('#dropzone_media'),
         urlInput: $('#' + dropzoneOptions.urlInputId),
         removeImageLink: $('#remove_image_link'),
-        init: function () {
-            featuredMediaDropzone();
-        },
         events: ['click']
     };
 
