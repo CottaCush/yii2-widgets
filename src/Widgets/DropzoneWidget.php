@@ -1,8 +1,8 @@
 <?php
 
-namespace app\widgets;
+namespace CottaCush\Yii2\Widgets;
 
-use app\assets\DropzoneImageUploadAsset;
+use CottaCush\Yii2\Assets\DropzoneImageUploadAsset;
 use yii\base\Widget;
 use yii\helpers\Html;
 
