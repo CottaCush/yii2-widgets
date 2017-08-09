@@ -1,5 +1,4 @@
 var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
-
     var params = {
         dropzoneTarget: $('#dropzone_media'),
         urlInput: $('#' + dropzoneOptions.urlInputId),
