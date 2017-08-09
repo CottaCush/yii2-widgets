@@ -52,7 +52,7 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
                 });
 
                 this.on('success', function (file, response) {
-                    mediaUrl.val(response.data['url'])
+                    mediaUrl.val(response.data[dropzoneOptions.urlKey])
                 });
 
                 this.on('error', function (file, errorMessage, xhr) {
@@ -60,7 +60,7 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
                         this.removeFile(file);
                     }
 
-                    if (errorMessage.hasOwnProperty('message')) {
+                    if (errorMessage.hasOwnProperty(dropzoneOptions.errorMessageKey)) {
                         errorMessage = errorMessage.message;
                     }
 

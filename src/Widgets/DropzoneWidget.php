@@ -22,6 +22,8 @@ class DropzoneWidget extends Widget
     public $addRemoveLinks = true;
     public $previewTemplate;
     public $targetUrlInputId;
+    public $urlKey = 'url';
+    public $errorMessageKey = 'message';
 
     public function init()
     {
