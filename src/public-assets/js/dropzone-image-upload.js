@@ -3,6 +3,7 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
         dropzoneTarget: $('#dropzone_media'),
         urlInput: $('#' + dropzoneOptions.urlInputId),
         removeImageLink: $('#remove_image_link'),
+        uploadInfoHolder: $('#dropzone_upload_info'),
         events: ['click']
     };
 
@@ -65,10 +66,21 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
                     }
 
                     Notification.error(errorMessage);
+
+                    $('#dropzone_upload_info').val("");
                 });
 
                 this.on('sending', function (file, xhr, formData) {
                     formData.append('_csrf', yii.getCsrfToken());
+                });
+
+                this.on('totaluploadprogress', function (progress) {
+                    console.log('Uploading: ' + progress + '%');
+                    $('#dropzone_upload_info').html('Uploading... ' + Math.floor(progress) + '%');
+                });
+
+                this.on('queuecomplete', function (progress) {
+                    $('#dropzone_upload_info').html('');
                 });
             }
         }, dropzoneOptions);

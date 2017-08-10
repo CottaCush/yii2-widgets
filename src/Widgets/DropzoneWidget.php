@@ -7,9 +7,20 @@ use yii\base\Widget;
 use yii\helpers\Html;
 
 /**
- * Class DropzoneWidget
+ * The Dropzone widget is used to setup a image upload box that supports dragging.
+ *
+ *
+ * A basic usage looks like the following:
+ *
+ * ```php
+ * <?= DropzoneWidget::widget([
+ *     'uploadUrl' => '/site/upload',
+ *     'targetUrlInputId' => 'image_url_input'
+ *     ],
+ * ]) ?>
+ * ```
+ *
  * @author Adeyemi Olaoye <yemi@cottacush.com>
- * @package app\widgets
  */
 class DropzoneWidget extends Widget
 {
@@ -24,6 +35,8 @@ class DropzoneWidget extends Widget
     public $targetUrlInputId;
     public $urlKey = 'url';
     public $errorMessageKey = 'message';
+    public $uploadPrompt = 'Click to add an image or drag image here';
+    public $removeImageLabel = 'Remove image';
 
     public function init()
     {
@@ -38,20 +51,20 @@ class DropzoneWidget extends Widget
 
         echo Html::beginTag('div', ['class' => 'dropzone-placeholder']);
 
+        $placeholderImage = Html::img($this->imageUrl, ['class' => 'img-responsive dropzone-placeholder__image']);
+        $removeImageLabel = Html::a($this->removeImageLabel, '#', [
+            'id' => 'remove_image_link', 'class' => 'dropzone-placeholder__remove-link'
+        ]);
+
         echo Html::tag(
             'div',
-            Html::img($this->imageUrl, ['class' => 'img-responsive dropzone-placeholder__image']) .
-            Html::a(
-                'Remove image',
-                '#',
-                ['id' => 'remove_image_link', 'class' => 'dropzone-placeholder__remove-link']
-            ),
+            $placeholderImage . $removeImageLabel,
             ['class' => 'text-center hide']
         );
 
         echo Html::tag(
             'div',
-            Html::tag('div', 'Click to add an image or drag image here', ['class' => 'dz-message']),
+            Html::tag('div', $this->uploadPrompt, ['class' => 'dz-message']),
             [
                 'class' => 'dropzone dropzone-holder__dropzone-target dz-clickable hide',
                 'id' => 'dropzone_media'
@@ -82,6 +95,11 @@ class DropzoneWidget extends Widget
         $previewTemplate .= Html::beginTag('div', ['class' => 'dz-error-message']);
         $previewTemplate .= Html::tag('span', '', ['data-dz-errormessage' => '']);
         $previewTemplate .= Html::endTag('div');
+        $previewTemplate .= Html::tag(
+            'span',
+            '',
+            ['id' => 'dropzone_upload_info', 'class' => 'text-center dropzone_upload_info']
+        );
         $previewTemplate .= Html::tag('a', '', ['class' => 'dz-remove', 'data-dz-remove']);
         $previewTemplate .= Html::endTag('div');
         return $previewTemplate;
