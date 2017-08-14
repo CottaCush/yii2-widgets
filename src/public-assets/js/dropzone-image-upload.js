@@ -32,58 +32,76 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
         removeEditMediaLinkParent.addClass('hide');
         dropzoneTarget.removeClass('hide');
 
-        var options = $.extend({
+        var defaultOptions = {
             thumbnailWidth: null,
             thumbnailHeight: null,
+
+            onFileAdded: function () {
+                if (this.files.length > this.options.maxFiles) {
+                    this.removeFile(file);
+                }
+                else {
+                    dropzoneMessageElement.addClass('hide');
+                }
+            },
+
+            onFileRemoved: function () {
+                if (this.files.length < this.options.maxFiles) {
+                    dropzoneMessageElement.removeClass('hide');
+                    mediaUrl.val('');
+                }
+            },
+
+            onSuccess: function (file, response) {
+                mediaUrl.val(response.data[dropzoneOptions.urlKey])
+            },
+
+            onError: function (file, errorMessage, xhr) {
+                if ('undefined' === typeof xhr) {
+                    this.removeFile(file);
+                }
+
+                if (errorMessage.hasOwnProperty(dropzoneOptions.errorMessageKey)) {
+                    errorMessage = errorMessage.message;
+                }
+
+                Notification.error(errorMessage);
+
+                $('#dropzone_upload_info').val("");
+            },
+
+            onSending: function (file, xhr, formData) {
+                formData.append('_csrf', yii.getCsrfToken());
+            },
+
+            onTotalUploadProgress: function (progress) {
+                console.log('Uploading: ' + progress + '%');
+                $('#dropzone_upload_info').html('Uploading... ' + Math.floor(progress) + '%');
+            },
+
+            onQueueCompleted: function (progress) {
+                $('#dropzone_upload_info').html('');
+            },
+
             init: function () {
-                this.on('addedfile', function (file) {
-                    if (this.files.length > this.options.maxFiles) {
-                        this.removeFile(file);
-                    }
-                    else {
-                        dropzoneMessageElement.addClass('hide');
-                    }
-                });
+                console.log(defaultOptions.onFileAdded);
+                this.on('addedfile', defaultOptions.onFileAdded);
 
-                this.on('removedfile', function () {
-                    if (this.files.length < this.options.maxFiles) {
-                        dropzoneMessageElement.removeClass('hide');
-                        mediaUrl.val('');
-                    }
-                });
+                this.on('removedfile', defaultOptions.onFileRemoved);
 
-                this.on('success', function (file, response) {
-                    mediaUrl.val(response.data[dropzoneOptions.urlKey])
-                });
+                this.on('success', defaultOptions.onSuccess);
 
-                this.on('error', function (file, errorMessage, xhr) {
-                    if ('undefined' === typeof xhr) {
-                        this.removeFile(file);
-                    }
+                this.on('error', defaultOptions.onError);
 
-                    if (errorMessage.hasOwnProperty(dropzoneOptions.errorMessageKey)) {
-                        errorMessage = errorMessage.message;
-                    }
+                this.on('sending', defaultOptions.onSending);
 
-                    Notification.error(errorMessage);
+                this.on('totaluploadprogress', defaultOptions.onTotalUploadProgress);
 
-                    $('#dropzone_upload_info').val("");
-                });
-
-                this.on('sending', function (file, xhr, formData) {
-                    formData.append('_csrf', yii.getCsrfToken());
-                });
-
-                this.on('totaluploadprogress', function (progress) {
-                    console.log('Uploading: ' + progress + '%');
-                    $('#dropzone_upload_info').html('Uploading... ' + Math.floor(progress) + '%');
-                });
-
-                this.on('queuecomplete', function (progress) {
-                    $('#dropzone_upload_info').html('');
-                });
+                this.on('queuecomplete', defaultOptions.onQueueCompleted);
             }
-        }, dropzoneOptions);
+        };
+
+        var options = $.extend(defaultOptions, dropzoneOptions);
 
         dropzoneTarget.dropzone(options);
     }
