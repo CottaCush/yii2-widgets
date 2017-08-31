@@ -75,7 +75,6 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
             },
 
             onTotalUploadProgress: function (progress) {
-                console.log('Uploading: ' + progress + '%');
                 $('#dropzone_upload_info').html('Uploading... ' + Math.floor(progress) + '%');
             },
 
@@ -84,7 +83,6 @@ var DropzoneImageUpload = (function ($, Notification, dropzoneOptions) {
             },
 
             init: function () {
-                console.log(defaultOptions.onFileAdded);
                 this.on('addedfile', defaultOptions.onFileAdded);
 
                 this.on('removedfile', defaultOptions.onFileRemoved);

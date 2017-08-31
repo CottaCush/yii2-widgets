@@ -4,10 +4,19 @@ All Notable changes to `yii2-widgets` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## NEXT - YYYY-MM-DD
+## v1.0.0 - 2017-08-31
 
 ### Added
-- Nothing
+- AssetBundle class to support adding strictly production files
+- Assets for open source libraries - Dropzone, FontAwesome, Toastr
+- BootstrapPlugin asset with no dependency on the Bootstrap CSS asset.
+- Notification asset built on top of Toastr
+- LetterAvatar asset to generate letter avatar images using canvas
+- Extended the Yii2 Html helper with useful functions
+- ActionButtons widget
+- Dropzone widget for easy dropzone image uploads
+- A customized version of the GridView widget
+- Base widgets for modals, user avatar and forms.
 
 ### Deprecated
 - Nothing
