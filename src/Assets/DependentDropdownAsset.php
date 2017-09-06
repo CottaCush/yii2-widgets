@@ -7,10 +7,13 @@ namespace CottaCush\Yii2\Assets;
  * @package CottaCush\Yii2\Assets
  * @author Kehinde Ladipo <ladipokenny@gmail.com>
  */
-class DependentDropdownAsset extends AssetBundle
+class DependentDropdownAsset extends LocalAssetBundle
 {
     public $js = [
-        'dropdown.js'
+        'js/dependent-dropdown.js'
+    ];
+    public $css = [
+        'css/dependent-dropdown.css'
     ];
 
     public $depends = [
