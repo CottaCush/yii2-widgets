@@ -2,6 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets;
 
+use CottaCush\Yii2\Assets\ModalAsset;
 use CottaCush\Yii2\Helpers\Html;
 use CottaCush\Yii2\Widgets\Bootstrap\Modal;
 use yii\helpers\Url;
@@ -28,6 +29,7 @@ class BaseModalWidget extends BaseWidget
 
     public function run()
     {
+        $this->registerAssets();
         $this->beginModal();
         $this->beginForm();
         $this->renderContents();
@@ -70,5 +72,10 @@ class BaseModalWidget extends BaseWidget
     public function endModal()
     {
         Modal::end();
+    }
+
+    public function registerAssets()
+    {
+        ModalAsset::register($this->getView());
     }
 }

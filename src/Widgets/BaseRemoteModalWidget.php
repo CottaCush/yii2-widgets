@@ -12,7 +12,6 @@ class BaseRemoteModalWidget extends Widget
 
     public function init()
     {
-        parent::init();
         $this->registerAssets();
     }
 
