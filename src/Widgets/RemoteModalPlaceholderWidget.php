@@ -73,13 +73,4 @@ class RemoteModalPlaceholderWidget extends BaseModalWidget
     {
         Modal::end();
     }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     * @return mixed
-     */
-    public function registerAssets()
-    {
-        ModalAsset::register($this->getView());
-    }
 }

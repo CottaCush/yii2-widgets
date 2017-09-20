@@ -2,12 +2,19 @@
 
 namespace CottaCush\Yii2\Widgets;
 
+use CottaCush\Yii2\Assets\ModalAsset;
 use yii\base\Widget;
 use yii\bootstrap\Html;
 
 class BaseRemoteModalWidget extends Widget
 {
     public $titleText = '';
+
+    public function init()
+    {
+        parent::init();
+        $this->registerAssets();
+    }
 
     /**
      * @author Adeyemi Olaoye <yemi@cottacush.com>
@@ -42,5 +49,14 @@ class BaseRemoteModalWidget extends Widget
     public function endModalBody()
     {
         $this->endDiv();
+    }
+
+    /**
+     * @author Adeyemi Olaoye <yemi@cottacush.com>
+     * @return mixed
+     */
+    public function registerAssets()
+    {
+        ModalAsset::register($this->getView());
     }
 }

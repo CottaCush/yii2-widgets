@@ -2,7 +2,6 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use CottaCush\Yii2\Assets\ModalAsset;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -31,7 +30,7 @@ class RemoteModalFormWidget extends BaseRemoteModalWidget
      */
     public function init()
     {
-        $this->registerAssets();
+        parent::init();
         $this->beginForm();
         $this->renderModalHeader();
         $this->beginModalBody();
@@ -97,14 +96,5 @@ class RemoteModalFormWidget extends BaseRemoteModalWidget
         }
 
         echo implode('', $this->formContents);
-    }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     * @return mixed
-     */
-    public function registerAssets()
-    {
-        ModalAsset::register($this->getView());
     }
 }

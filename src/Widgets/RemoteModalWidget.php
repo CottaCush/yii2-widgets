@@ -20,6 +20,7 @@ class RemoteModalWidget extends BaseRemoteModalWidget
      */
     public function run()
     {
+        parent::init();
         $this->renderModalHeader();
         $this->beginModalBody();
         $this->renderContents();
