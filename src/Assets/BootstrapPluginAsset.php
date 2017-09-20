@@ -5,7 +5,7 @@ namespace CottaCush\Yii2\Assets;
 /**
  * Class BootstrapPluginAsset
  * Asset bundle for the Twitter bootstrap javascript files.
- * @package app\assets
+ * @package CottaCush\Yii2\Assets
  * @author Olajide Oye <jide@cottacush.com>
  */
 class BootstrapPluginAsset extends AssetBundle
