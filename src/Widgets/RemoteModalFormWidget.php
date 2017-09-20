@@ -3,15 +3,15 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Assets\ModalAsset;
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /**
  * Class RemoteModalFormWidget
  * @author Adeyemi Olaoye <yemi@cottacush.com>
  * @package app\widgets
  */
-class RemoteModalFormWidget extends BaseWidget
+class RemoteModalFormWidget extends BaseRemoteModalWidget
 {
     /** @var  ActiveForm */
     public $form;
@@ -23,12 +23,15 @@ class RemoteModalFormWidget extends BaseWidget
     public $positiveButtonClass = 'btn btn-primary';
     public $titleText = '';
     public $formContents = [];
+    public $showFooterButtons = true;
+    public $showFooter = true;
 
     /**
      * @author Adeyemi Olaoye <yemi@cottacush.com>
      */
     public function init()
     {
+        $this->registerAssets();
         $this->beginForm();
         $this->renderModalHeader();
         $this->beginModalBody();
@@ -43,7 +46,9 @@ class RemoteModalFormWidget extends BaseWidget
     {
         $this->renderFormContents();
         $this->endModalBody();
-        $this->renderFooter();
+        if ($this->showFooter) {
+            $this->renderFooter();
+        }
         ActiveForm::end();
     }
 
@@ -56,29 +61,8 @@ class RemoteModalFormWidget extends BaseWidget
         $this->form = ActiveForm::begin([
             'action' => $this->action,
             'method' => 'post',
-            'options' => ['id' => $this->formId],
-            'enableClientValidation' => true,
-            'enableAjaxValidation' => true
+            'options' => ['id' => $this->formId]
         ]);
-    }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     */
-    public function beginModalBody()
-    {
-        echo Html::beginTag('div', ['class' => 'modal-body']);
-    }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     */
-    public function renderModalHeader()
-    {
-        echo Html::beginTag('div', ['class' => 'modal-header']);
-        echo Html::button('', ['class' => 'close', 'data-dismiss' => 'modal']);
-        echo Html::tag('h4', $this->titleText, ['class' => 'modal-title', 'data-dismiss' => 'modal']);
-        echo Html::endTag('div');
     }
 
     /**
@@ -87,31 +71,19 @@ class RemoteModalFormWidget extends BaseWidget
     public function renderFooter()
     {
         echo Html::beginTag('div', ['class' => 'modal-footer']);
-        echo Html::button($this->negativeButtonText, [
-            'class' => $this->negativeButtonClass, 'data-dismiss' => 'modal'
-        ]);
-        echo Html::button($this->positiveButtonText, [
-            'type' => 'submit',
-            'class' => $this->positiveButtonClass
-        ]);
+
+        if ($this->showFooterButtons) {
+            echo Html::button($this->negativeButtonText, [
+                'class' => $this->negativeButtonClass, 'data-dismiss' => 'modal'
+            ]);
+            echo Html::button($this->positiveButtonText, [
+                'type' => 'submit',
+                'class' => $this->positiveButtonClass,
+                'data-submit-modal-form' => ''
+            ]);
+        }
         $this->endDiv();
 
-    }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     */
-    private function endDiv()
-    {
-        echo Html::endTag('div');
-    }
-
-    /**
-     * @author Adeyemi Olaoye <yemi@cottacush.com>
-     */
-    public function endModalBody()
-    {
-        $this->endDiv();
     }
 
     /**

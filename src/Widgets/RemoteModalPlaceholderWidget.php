@@ -11,18 +11,27 @@ use yii\helpers\Html;
  * @author Adeyemi Olaoye <yemi@cottacush.com>
  * @package CottaCush\Yii2\Widgets
  */
-class RemoteModalPlaceholderWidget extends BaseWidget
+class RemoteModalPlaceholderWidget extends BaseModalWidget
 {
     public $id;
+    public $ids;
 
     /**
      * @author Adeyemi Olaoye <yemi@cottacush.com>
      */
     public function init()
     {
-        $this->beginModal();
-        $this->renderContents();
-        $this->endModal();
+        parent::init();
+
+        if ($this->id) {
+            $this->ids = [$this->id];
+        }
+
+        foreach ($this->ids as $id) {
+            $this->id = $id;
+            $this->beginModal();
+            $this->endModal();
+        }
     }
 
     /**
@@ -45,8 +54,16 @@ class RemoteModalPlaceholderWidget extends BaseWidget
             'options' => [
                 'id' => $this->id,
                 'class' => 'modal fade'
-            ]
+            ],
+            'header' => null,
+            'closeButton' => false
         ]);
+
+        echo Html::beginTag('div', ['class' => 'text-center']);
+        echo FontAwesomeIcon::widget(['name' => 'spinner fa-3x fa-spin']);
+        echo '<br><br>';
+        echo Html::tag('div', 'Loading...');
+        echo Html::endTag('div');
     }
 
     /**
