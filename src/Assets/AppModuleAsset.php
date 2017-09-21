@@ -10,7 +10,7 @@ namespace CottaCush\Yii2\Assets;
 class AppModuleAsset extends LocalAssetBundle
 {
     public $js = [
-        'app.js'
+        'js/app.js'
     ];
 
     public $depends = [

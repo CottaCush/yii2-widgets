@@ -7,9 +7,8 @@
 
 namespace CottaCush\Yii2\Widgets\Bootstrap;
 
-use CottaCush\Yii2\Widgets\widgets\Bootstrap\Widget;
-use yii\helpers\ArrayHelper;
 use CottaCush\Yii2\Helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * Modal renders a modal window that can be toggled by clicking on a button.
