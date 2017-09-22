@@ -2,9 +2,8 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use CottaCush\Yii2\Assets\ModalAsset;
+use CottaCush\Yii2\Helpers\Html;
 use yii\bootstrap\Modal;
-use yii\helpers\Html;
 
 /**
  * Class RemoteModalPlaceholderWidget
@@ -60,7 +59,7 @@ class RemoteModalPlaceholderWidget extends BaseModalWidget
         ]);
 
         echo Html::beginTag('div', ['class' => 'text-center']);
-        echo FontAwesomeIcon::widget(['name' => 'spinner fa-3x fa-spin']);
+        echo Html::faIcon('spinner', ['class' => 'fa-3x fa-spin']);
         echo '<br><br>';
         echo Html::tag('div', 'Loading...');
         echo Html::endTag('div');

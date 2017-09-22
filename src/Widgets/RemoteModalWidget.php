@@ -2,7 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use yii\helpers\Html;
+use CottaCush\Yii2\Helpers\Html;
 
 /**
  * Class RemoteModalWidget
@@ -46,6 +46,5 @@ class RemoteModalWidget extends BaseRemoteModalWidget
             'class' => 'btn btn-default', 'data-dismiss' => 'modal'
         ]);
         $this->endDiv();
-
     }
 }

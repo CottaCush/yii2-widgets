@@ -3,9 +3,14 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Assets\ModalAsset;
+use CottaCush\Yii2\Helpers\Html;
 use yii\base\Widget;
-use yii\bootstrap\Html;
 
+/**
+ * Class BaseRemoteModalWidget
+ * @author Adeyemi Olaoye <yemi@cottacush.com>
+ * @package CottaCush\Yii2\Widgets
+ */
 class BaseRemoteModalWidget extends Widget
 {
     public $titleText = '';

@@ -2,7 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use yii\helpers\Html;
+use CottaCush\Yii2\Helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**

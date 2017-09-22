@@ -4,7 +4,7 @@ namespace CottaCush\Yii2\Assets;
 
 /**
  * Class AppModuleAsset
- * @author Olajide Oye <jide@cottacush.com>
+ * @author Adeyemi Olaoye <yemi@cottacush.com>
  * @package app\assets
  */
 class AppModuleAsset extends LocalAssetBundle
@@ -14,6 +14,6 @@ class AppModuleAsset extends LocalAssetBundle
     ];
 
     public $depends = [
-        'CottaCush\Yii2\Assets\AppAsset'
+        'yii\web\JqueryAsset'
     ];
 }
