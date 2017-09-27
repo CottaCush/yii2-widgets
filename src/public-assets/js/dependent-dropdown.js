@@ -40,7 +40,8 @@ $(function() {
                 $element.next('.dependent-dropdown-child').append(response.data);
             },
             error: function(xhr) {
-                console.log(xhr.status + ': ' + xhr.message)
+                $element.removeClass('dependent-dropdown-loading');
+                console.log(xhr.status + ': ' + xhr.message);
             },
             complete: function() {
                 $element.removeClass('dependent-dropdown-loading');
