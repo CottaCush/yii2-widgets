@@ -1,21 +1,15 @@
-var Dropdown = (function ($) {
+$(function() {
+    $(document).on('change', 'select[data-dependent-dropdown]', function() {
 
-    return {
-        init: function (formEl) {
-            $(formEl).on('change', 'select.dep-drop',  function () {
-                var $element = $(this);
-                $element.parent().next('.subs').remove();
-                $element.addClass('dependent-dropdown-loading');
+        var $element = $(this);
+        $element.next('.dependent-dropdown-child').remove();
+        $element.addClass('dependent-dropdown-loading');
 
-                $.post($element.data('url'), {'parent_id': $element.val()}, function(response) {
-                    $element.removeClass('dependent-dropdown-loading');
+        $.post($element.data('url'), {'parent_id': $element.val()}, function(response) {
+            $element.removeClass('dependent-dropdown-loading');
+            $element.after('<div class="dependent-dropdown-child"></div>');
+            $element.next('.dependent-dropdown-child').append(response.data);
+        });
+    });
 
-                    $element.parent().after('<div class="subs"></div>');
-                    $element.parent().next('.subs').append(response.data);
-                });
-            });
-        }
-
-    };
-
-})(jQuery);
+});
