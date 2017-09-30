@@ -15,15 +15,17 @@
  *
  */
 $(function () {
+    var dropdown_selector = 'select[data-dependent-dropdown]';
 
     /**
      * Clears and reloads the child drop-down for a parent drop-down
      * @event change
      */
-    $(document).on('change', 'select[data-dependent-dropdown]', function () {
+    $(document).on('change', dropdown_selector, function () {
         var $element = $(this);
+
         // Remove a dependent drop-down child if it already exists
-        $element.next('.dependent-dropdown-child').remove();
+        $(dropdown_selector).slice ( $(dropdown_selector).index( $element ) + 1).remove();
 
         $.ajax({
             type: 'POST',
