@@ -15,7 +15,7 @@ App.Components.Modal = (function ($, document) {
         },
 
         /**
-         * Populate the fields in the modal from the
+         * Populate the fields in the modal from the data attributes on the modal trigger button
          * @param modalId
          * @param modelName
          */
