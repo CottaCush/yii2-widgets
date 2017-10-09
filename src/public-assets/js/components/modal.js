@@ -48,18 +48,18 @@ App.Components.Modal = (function ($, document) {
         },
 
         /**
-         * Remove element selected on a field in a dropdown
-         * @param modalId
-         * @param modelName
-         * @param field
-         * @param dropdownField
+         * Remove option in a dropdown based on the value of a field
+         * @param modalSelector selector to select modal
+         * @param modelName name of model used in modal
+         * @param fieldName name of field with value
+         * @param dropdownFieldName name of dropdown
          */
-        excludeFieldValueFromDropdown: function (modalId, modelName, field, dropdownField) {
-            $(modalId).on('show.bs.modal', function (event) {
-                var element = $(modalId + " [name='" + modelName + "[" + field + "]'");
-                var dropdown = $(modalId + " select[name='" + modelName + "[" + dropdownField + "]']");
+        hideDropdownOptionWithFieldValue: function (modalSelector, modelName, fieldName, dropdownFieldName) {
+            $(modalSelector).on('show.bs.modal', function (event) {
+                var field = $(modalSelector + " [name='" + modelName + "[" + fieldName + "]'");
+                var dropdown = $(modalSelector + " select[name='" + modelName + "[" + dropdownFieldName + "]']");
                 dropdown.find('option').show();
-                var optionToExclude = dropdown.find("option[value='" + element.val() + "']");
+                var optionToExclude = dropdown.find("option[value='" + field.val() + "']");
                 optionToExclude.hide();
             });
         },

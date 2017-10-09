@@ -9,9 +9,12 @@ namespace CottaCush\Yii2\Widgets\Modals;
  */
 class LOVModalWidget extends ActiveFormModalWidget
 {
+    public $nameAttribute = 'name';
+    public $idAttribute = 'id';
+
     public function renderContents()
     {
-        echo $this->form->field($this->model, 'name');
-        echo $this->form->field($this->model, 'id')->hiddenInput()->label(false);
+        echo $this->form->field($this->model, $this->nameAttribute);
+        echo $this->form->field($this->model, $this->idAttribute)->hiddenInput()->label(false);
     }
 }
