@@ -11,7 +11,7 @@ namespace CottaCush\Yii2\Assets;
 class FormAsset extends LocalAssetBundle
 {
     public $js = [
-        'js/form.js',
+        'js/components/form.js',
     ];
 
     public $depends = [

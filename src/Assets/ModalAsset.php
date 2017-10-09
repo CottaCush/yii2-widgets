@@ -5,7 +5,7 @@ namespace CottaCush\Yii2\Assets;
 class ModalAsset extends LocalAssetBundle
 {
     public $js = [
-        'js/modal.js'
+        'js/components/modal.js'
     ];
 
     public $depends = [
