@@ -29,3 +29,27 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Security
 - Nothing
+
+
+## v1.2.0 - 2017-10-09
+
+### Added
+- Add modal widget
+- Add LOV modal widget
+- Add ActiveFormWidget
+- Add Confirm Modal Widget
+- Add Modal method to hide dropdown option
+- Add App asset for modular javascript support
+- Add modal and form asset for modal and form interactions
+
+### Deprecated
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
