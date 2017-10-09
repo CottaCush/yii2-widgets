@@ -48,7 +48,7 @@ App.Components.Modal = (function ($, document) {
         },
 
         /**
-         * Remove option in a dropdown based on the value of a field
+         * Hide option in a dropdown based on the value of a field
          * @param modalSelector selector to select modal
          * @param modelName name of model used in modal
          * @param fieldName name of field with value
@@ -58,9 +58,15 @@ App.Components.Modal = (function ($, document) {
             $(modalSelector).on('show.bs.modal', function (event) {
                 var field = $(modalSelector + " [name='" + modelName + "[" + fieldName + "]'");
                 var dropdown = $(modalSelector + " select[name='" + modelName + "[" + dropdownFieldName + "]']");
+
+                // show all dropdown options
                 dropdown.find('option').show();
-                var optionToExclude = dropdown.find("option[value='" + field.val() + "']");
-                optionToExclude.hide();
+
+                // get option with value correlating to field value
+                var optionToHide = dropdown.find("option[value='" + field.val() + "']");
+
+                // hide option
+                optionToHide.hide();
             });
         },
 
