@@ -1,8 +1,7 @@
 <?php
 
-namespace CottaCush\Yii2\Widgets\widgets\Bootstrap;
+namespace CottaCush\Yii2\Widgets\Bootstrap;
 
-use CottaCush\Yii2\Widgets\Bootstrap\BootstrapWidgetTrait;
 
 /**
  * Class Widget

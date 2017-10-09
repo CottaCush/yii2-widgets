@@ -2,10 +2,17 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use CottaCush\Yii2\Widgets\Bootstrap\Modal;
+use CottaCush\Yii2\Assets\ModalAsset;
 use CottaCush\Yii2\Helpers\Html;
+use CottaCush\Yii2\Widgets\Bootstrap\Modal;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
+/**
+ * Class BaseModalWidget
+ * @author Adeyemi Olaoye <yemi@cottacush.com>
+ * @package CottaCush\Yii2\Widgets
+ */
 class BaseModalWidget extends BaseWidget
 {
     public $title;
@@ -22,6 +29,7 @@ class BaseModalWidget extends BaseWidget
 
     public function run()
     {
+        $this->registerAssets();
         $this->beginModal();
         $this->beginForm();
         $this->renderContents();
@@ -42,14 +50,14 @@ class BaseModalWidget extends BaseWidget
                     'submit',
                     '',
                     $this->footerSubmit,
-                    [ 'class' => $this->modalSubmitFooterClass, 'data-submit-modal-form' => '']
+                    ['class' => $this->modalSubmitFooterClass, 'data-submit-modal-form' => '']
                 )
         ]);
     }
 
     public function beginForm()
     {
-        echo Html::beginForm(Url::toRoute($this->route),  $this->formMethod, $this->formOptions);
+        echo Html::beginForm(Url::toRoute($this->route), $this->formMethod, $this->formOptions);
     }
 
     public function renderContents()
@@ -65,5 +73,9 @@ class BaseModalWidget extends BaseWidget
     {
         Modal::end();
     }
-}
 
+    public function registerAssets()
+    {
+        ModalAsset::register($this->getView());
+    }
+}
