@@ -47,6 +47,23 @@ App.Components.Modal = (function ($, document) {
             });
         },
 
+        /**
+         * Remove element selected on a field in a dropdown
+         * @param modalId
+         * @param modelName
+         * @param field
+         * @param dropdownField
+         */
+        excludeFieldValueFromDropdown: function (modalId, modelName, field, dropdownField) {
+            $(modalId).on('show.bs.modal', function (event) {
+                var element = $(modalId + " [name='" + modelName + "[" + field + "]'");
+                var dropdown = $(modalId + " select[name='" + modelName + "[" + dropdownField + "]']");
+                dropdown.find('option').show();
+                var optionToExclude = dropdown.find("option[value='" + element.val() + "']");
+                optionToExclude.hide();
+            });
+        },
+
         $genericModal: $('[data-generic-modal]'),
         modalIdSelector: '[data-id]',
         modalTitleSelector: 'h4.modal-title',
@@ -72,7 +89,6 @@ App.Components.Modal = (function ($, document) {
 
         init: function () {
             submitModalForm();
-            this.populateModal();
             this.genericPrefillModal();
         },
         close: function () {
