@@ -3,7 +3,6 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Assets\DropzoneImageUploadAsset;
-use yii\base\Widget;
 use yii\helpers\Html;
 
 /**
@@ -22,7 +21,7 @@ use yii\helpers\Html;
  *
  * @author Adeyemi Olaoye <yemi@cottacush.com>
  */
-class DropzoneWidget extends Widget
+class DropzoneWidget extends BaseWidget
 {
     public $imageUrl = null;
     public $uploadUrl;
@@ -47,9 +46,9 @@ class DropzoneWidget extends Widget
 
     public function run()
     {
-        echo Html::beginTag('div', ['class' => 'clearfix']);
+        echo $this->beginDiv('clearfix');
 
-        echo Html::beginTag('div', ['class' => 'dropzone-placeholder']);
+        echo $this->beginDiv('dropzone-placeholder');
 
         $placeholderImage = Html::img($this->imageUrl, ['class' => 'img-responsive dropzone-placeholder__image']);
         $removeImageLabel = Html::a($this->removeImageLabel, '#', [
@@ -71,7 +70,8 @@ class DropzoneWidget extends Widget
             ]
         );
 
-        echo Html::endTag('div');
+        echo $this->endDiv(); //.dropzone-placeholder
+        echo $this->endDiv(); //.clearfix
 
 
         echo Html::script('var dropzoneOptions =' . json_encode([
@@ -88,20 +88,20 @@ class DropzoneWidget extends Widget
 
     private function getDefaultPreviewTemplate()
     {
-        $previewTemplate = Html::beginTag('div', ['class' => 'dz-preview dz-image-preview']);
-        $previewTemplate .= Html::beginTag('div', ['class' => 'dz-image']);
+        $previewTemplate = $this->beginDiv('dz-preview dz-image-preview');
+        $previewTemplate .= $this->beginDiv('dz-image');
         $previewTemplate .= Html::img('', ['data-dz-thumbnail' => '']);
-        $previewTemplate .= Html::endTag('div');
-        $previewTemplate .= Html::beginTag('div', ['class' => 'dz-error-message']);
+        $previewTemplate .= $this->endDiv();
+        $previewTemplate .=  $this->beginDiv('dz-error-message');
         $previewTemplate .= Html::tag('span', '', ['data-dz-errormessage' => '']);
-        $previewTemplate .= Html::endTag('div');
+        $previewTemplate .= $this->endDiv();
         $previewTemplate .= Html::tag(
             'span',
             '',
             ['id' => 'dropzone_upload_info', 'class' => 'text-center dropzone_upload_info']
         );
         $previewTemplate .= Html::tag('a', '', ['class' => 'dz-remove', 'data-dz-remove']);
-        $previewTemplate .= Html::endTag('div');
+        $previewTemplate .= $this->endDiv();
         return $previewTemplate;
     }
 }

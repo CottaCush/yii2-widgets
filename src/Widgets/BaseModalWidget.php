@@ -18,12 +18,14 @@ class BaseModalWidget extends BaseWidget
     public $title;
     public $id;
     public $route;
-    public $footerSubmit;
+    public $footerSubmit = 'Submit';
+    public $footerCancel = 'Cancel';
     public $formMethod;
     public $formOptions;
     public $modalHeaderClass;
-    public $modalCancelFooterClass;
-    public $modalSubmitFooterClass;
+    public $modalCancelFooterClass = 'btn btn-default';
+    public $modalSubmitFooterClass = 'btn btn-primary';
+
     /** @var  ActiveForm $form */
     protected $form;
 
@@ -45,7 +47,7 @@ class BaseModalWidget extends BaseWidget
                 'id' => $this->id
             ],
             'footer' =>
-                Html::button('Cancel', ['class' => $this->modalCancelFooterClass, 'data-dismiss' => 'modal']) .
+                Html::button($this->footerCancel, ['class' => $this->modalCancelFooterClass, 'data-dismiss' => 'modal']) .
                 Html::input(
                     'submit',
                     '',

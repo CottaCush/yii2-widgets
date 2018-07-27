@@ -104,12 +104,30 @@ class Html extends YiiHtml
             if (is_bool($fallback) && is_string($src)) {
                 $fallback = rtrim($src, 'svg') . $fallbackExt;
                 $options['onerror'] = "this.src = '$fallback'; this.onerror = '';";
-            }
-            else if (is_string($fallback)) {
+            } else if (is_string($fallback)) {
                 $options['onerror'] = "this.src = '$fallback'; this.onerror = '';";
             }
         }
 
         return self::img($src, $options);
+    }
+
+    /**
+     * @param array|string $classNames
+     * @param array $options
+     * @return string
+     */
+    public static function beginDiv($classNames = [], $options = [])
+    {
+        self::addCssClass($options, $classNames);
+        return self::beginTag('div', $options) . "\n";
+    }
+
+    /**
+     * @return string
+     */
+    public static function endDiv()
+    {
+        return self::endTag('div') . "\n";
     }
 }
