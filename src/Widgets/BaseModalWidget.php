@@ -18,13 +18,14 @@ class BaseModalWidget extends BaseWidget
     public $title;
     public $id;
     public $route;
-    public $footerSubmit;
-    public $footerCancel;
+    public $footerSubmit = 'Submit';
+    public $footerCancel = 'Cancel';
     public $formMethod;
     public $formOptions;
     public $modalHeaderClass;
-    public $modalCancelFooterClass;
-    public $modalSubmitFooterClass;
+    public $modalCancelFooterClass = 'btn btn-default';
+    public $modalSubmitFooterClass = 'btn btn-primary';
+
     /** @var  ActiveForm $form */
     protected $form;
 

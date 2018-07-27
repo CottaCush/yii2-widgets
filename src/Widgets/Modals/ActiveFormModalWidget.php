@@ -22,9 +22,6 @@ class ActiveFormModalWidget extends BaseModalWidget
      */
     public $populateFields = false;
 
-    public $modalCancelFooterClass = 'btn btn-default';
-    public $modalSubmitFooterClass = 'btn btn-primary';
-
     public function beginForm()
     {
         $this->form = ActiveForm::begin(['action' => $this->route, 'method' => $this->formMethod]);

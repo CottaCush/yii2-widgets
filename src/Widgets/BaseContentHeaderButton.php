@@ -41,7 +41,7 @@ class BaseContentHeaderButton extends BaseWidget
 
         $text = ArrayHelper::getValue($buttonArray, 'label', 'Add New');
         $tag = ArrayHelper::getValue($buttonArray, 'tag', 'a');
-        $iconName = ArrayHelper::getValue($buttonArray, 'icon', 'plus');
+        $iconName = ArrayHelper::getValue($buttonArray, 'icon');
         $icon = '';
         if ($iconName) {
             $icon = Html::faIcon($iconName);
