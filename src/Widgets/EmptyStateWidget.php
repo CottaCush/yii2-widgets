@@ -2,6 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets;
 
+use CottaCush\Yii2\Assets\EmptyStateAsset;
 use CottaCush\Yii2\Assets\FontAwesomeAsset;
 use CottaCush\Yii2\Helpers\Html;
 use yii\helpers\ArrayHelper;
@@ -54,5 +55,6 @@ class EmptyStateWidget extends BaseContentHeaderButton
         }
 
         echo Html::endTag('section');
+        EmptyStateAsset::register($this->getView());
     }
 }
