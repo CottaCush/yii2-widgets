@@ -22,12 +22,8 @@ class ActiveFormModalWidget extends BaseModalWidget
      */
     public $populateFields = false;
 
-    public function init()
-    {
-        $this->modalCancelFooterClass = 'btn';
-        $this->modalSubmitFooterClass = 'btn btn-primary';
-        parent::init();
-    }
+    public $modalCancelFooterClass = 'btn btn-default';
+    public $modalSubmitFooterClass = 'btn btn-primary';
 
     public function beginForm()
     {
@@ -41,11 +37,12 @@ class ActiveFormModalWidget extends BaseModalWidget
 
     public function endModal()
     {
-        parent::endModal();
         if ($this->populateFields) {
             $this->view->registerJs(
                 "App.Components.Modal.populateModal('#" . $this->id . "','" . $this->model->formName() . "');"
             );
         }
+
+        parent::endModal();
     }
 }

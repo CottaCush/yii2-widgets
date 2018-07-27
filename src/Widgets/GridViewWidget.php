@@ -34,6 +34,7 @@ class GridViewWidget extends GridView
     {
         $this->setLayout();
         $this->setSummary();
+
         if (!$this->isEmpty()) {
             $this->setActionBar();
         }

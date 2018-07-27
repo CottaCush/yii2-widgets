@@ -2,7 +2,6 @@
 
 namespace CottaCush\Yii2\Widgets;
 
-use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -11,11 +10,11 @@ use yii\helpers\Url;
  * @author Damilola Olaleye <damilola@cottacush.com>
  * @package CottaCush\Yii2\Widgets
  */
-class BaseFormWidget extends Widget
+class BaseFormWidget extends BaseWidget
 {
     public $formRoute;
     public $formOptions = [];
-    public $formMethod ='post';
+    public $formMethod = 'post';
 
     public function run()
     {

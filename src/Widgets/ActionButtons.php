@@ -38,7 +38,7 @@ class ActionButtons extends BaseWidget
     /**
      * @var string the actions button dropdown label
      */
-    public $actionsButtonLabel = 'Actions';
+    public $actionsButtonLabel = 'Actions ';
     /**
      * @var string caret html for the action button
      */
@@ -152,14 +152,14 @@ class ActionButtons extends BaseWidget
     private function beginButtonGroup()
     {
         if ($this->groupLinks) {
-            echo Html::beginTag('div', ['class' => 'btn-group']);
+            echo $this->beginDiv('btn-group');
         }
     }
 
     private function endButtonGroup()
     {
         if ($this->groupLinks) {
-            echo Html::endTag('div');
+            echo $this->endDiv();
         }
     }
 }
