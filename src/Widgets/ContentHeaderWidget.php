@@ -27,13 +27,13 @@ class ContentHeaderWidget extends BaseContentHeaderButton
         $view = $this->view;
 
         if (is_null($this->title)) {
-            $this->title = isset($view->params['pageTitle']) ? $view->params['pageTitle'] : $view->title;
+            $this->title = ArrayHelper::getValue($view, 'params.pageTitle', $view->title);
         }
         if (is_null($this->breadcrumbs)) {
-            $this->breadcrumbs = isset($view->params['breadcrumbs']) ? $view->params['breadcrumbs'] : [$this->title];
+            $this->breadcrumbs = ArrayHelper::getValue($view, 'params.breadcrumbs', $this->title);
         }
         if (is_null($this->contentRight)) {
-            $this->contentRight = isset($view->params['contentHeaderRight']) ? $view->params['contentHeaderRight'] : '';
+            $this->contentRight = ArrayHelper::getValue($view, 'params.contentHeaderRight', '');
         }
 
         $this->setButton();
