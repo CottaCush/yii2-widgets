@@ -18,7 +18,7 @@ class BaseWidget extends Widget
      * @param array $options
      * @return string
      */
-    protected function beginDiv($classNames = [], $options = [])
+    public function beginDiv($classNames = [], $options = [])
     {
         return Html::beginDiv($classNames, $options);
     }
@@ -26,7 +26,7 @@ class BaseWidget extends Widget
     /**
      * @return string
      */
-    protected function endDiv()
+    public function endDiv()
     {
         return Html::endDiv();
     }
