@@ -20,6 +20,9 @@ class ConfirmModalWidget extends BaseModalWidget
     public $formMethod = 'post';
     public $formOptions = ['class' => 'disable-submit-buttons'];
 
+    public $modalSubmitFooterClass = 'btn btn-danger';
+    public $modalCancelFooterClass = 'btn btn-default';
+
     public function beginModal()
     {
         Modal::begin([
@@ -28,8 +31,14 @@ class ConfirmModalWidget extends BaseModalWidget
                 'id' => $this->modalId,
                 'data-generic-modal' => 'true'
             ],
-            'footer' => Html::button($this->footerCancel, ['class' => 'btn btn-default', 'data-dismiss' => 'modal']) .
-                Html::submitButton($this->footerSubmit, ['class' => 'btn btn-danger', 'data-submit-modal-form' => ''])
+            'footer' => Html::button(
+                    $this->footerCancel,
+                    ['class' => $this->modalCancelFooterClass, 'data-dismiss' => 'modal']
+                ) .
+                Html::submitButton(
+                    $this->footerSubmit,
+                    ['class' => $this->modalSubmitFooterClass, 'data-submit-modal-form' => true]
+                )
         ]);
     }
 

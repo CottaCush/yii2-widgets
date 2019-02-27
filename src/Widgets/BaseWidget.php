@@ -2,6 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets;
 
+use CottaCush\Yii2\Helpers\Html;
 use yii\base\Widget;
 
 /**
@@ -12,5 +13,21 @@ use yii\base\Widget;
  */
 class BaseWidget extends Widget
 {
+    /**
+     * @param array|string $classNames
+     * @param array $options
+     * @return string
+     */
+    public function beginDiv($classNames = [], $options = [])
+    {
+        return Html::beginDiv($classNames, $options);
+    }
 
+    /**
+     * @return string
+     */
+    public function endDiv()
+    {
+        return Html::endDiv();
+    }
 }
