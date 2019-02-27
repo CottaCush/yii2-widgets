@@ -19,6 +19,8 @@
   "dependencies": {
     "autoprefixer": "^6.7.7",
     "bower": "^1.8.0",
+    "dropzone": "^4.3.0",
+    "font-awesome": "^4.7.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cli": "^1.2.2",
     "gulp-cssmin": "^0.1.7",
@@ -31,6 +33,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "path": "^0.12.7",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "toastr": "^2.1.3"
   }
 }
