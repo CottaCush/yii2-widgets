@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ghttps://github.com/CottaCush/yii2-widgets"
+    "url": "https://github.com/CottaCush/yii2-widgets"
   },
   "author": "Cotta & Cush Developers <developers@cottacush.com>",
   "license": "ISC",
