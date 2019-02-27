@@ -10,7 +10,7 @@ namespace CottaCush\Yii2\Assets;
  */
 class ToastrAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/toastr';
+    public $sourcePath = '@npm/toastr';
     public $css = [
         'toastr.min.css'
     ];

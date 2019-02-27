@@ -10,7 +10,7 @@ namespace CottaCush\Yii2\Assets;
  */
 class BootstrapPluginAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/bootstrap/dist';
+    public $sourcePath = '@npm/bootstrap/dist';
     public $js = [
         'js/bootstrap.js',
     ];

@@ -11,7 +11,7 @@ namespace CottaCush\Yii2\Assets;
  */
 class DropzoneBaseAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/dropzone/dist/min/';
+    public $sourcePath = '@npm/dropzone/dist/min/';
 
     public $js = [
         'dropzone.min.js'
