@@ -23,6 +23,10 @@ App.Components.Form = (function ($) {
                 }
                 element.attr('checked', shouldCheck);
             } else {
+                if (element.attr('type') === 'file') {
+                    return;
+                }
+
                 if (element.is('select')) {
                     element.attr('data-selected', value);
                 }
