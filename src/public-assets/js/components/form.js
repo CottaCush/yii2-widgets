@@ -23,7 +23,7 @@ App.Components.Form = (function ($) {
                 }
                 element.attr('checked', shouldCheck);
             } else {
-                if (element.files.length > 0) {
+                if (element.attr('type') === 'file') {
                     return;
                 }
 
