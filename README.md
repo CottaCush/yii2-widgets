@@ -14,7 +14,7 @@ Useful Yii2 widgets created by the Cotta & Cush development team
 This package depends on the [fxp/composer-asset-plugin][link-fxp-composer-asset-plugin] plugin.
 
 ```bash
-$ composer global require "fxp/composer-asset-plugin:~1.3"
+$ composer global require "fxp/composer-asset-plugin:~1.4"
 ```
 
 ## Install
