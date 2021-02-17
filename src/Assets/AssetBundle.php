@@ -3,6 +3,7 @@
 namespace CottaCush\Yii2\Assets;
 
 use yii\web\AssetBundle as YiiAssetBundle;
+use yii\web\View;
 
 /**
  * Class AssetBundle
@@ -17,16 +18,16 @@ class AssetBundle extends YiiAssetBundle
      * @var array list of JavaScript files to be used for production.
      * This list will override [[js]] in production environments and follows the same format
      */
-    public $productionJs = [];
+    public array $productionJs = [];
     /**
      * @var array list of CSS files to be used for production.
      * This list overrides [[css]] in production environments and follows the same format
      */
-    public $productionCss = [];
+    public array $productionCss = [];
     /**
      * Registers the CSS and JS files with the given view.
      * In production environments, make use of the production asset files if they are provided
-     * @param \yii\web\View $view the view that the asset files are to be registered with.
+     * @param View $view the view that the asset files are to be registered with.
      */
     public function registerAssetFiles($view)
     {

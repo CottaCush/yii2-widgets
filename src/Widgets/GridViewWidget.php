@@ -12,10 +12,10 @@ use yii\helpers\Html;
  */
 class GridViewWidget extends GridView
 {
-    public $actionButtonLabel;
-    public $actionButtonModalId;
-    public $actionButtonModalHref;
-    public $actionButton;
+    public string $actionButtonLabel;
+    public string $actionButtonModalId;
+    public string $actionButtonModalHref;
+    public string $actionButton;
 
     /**
      * @param array $config
@@ -94,7 +94,7 @@ class GridViewWidget extends GridView
      * @author Adeyemi Olaoye <yemi@cottacush.com>
      * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return $this->dataProvider->getTotalCount() == 0;
     }

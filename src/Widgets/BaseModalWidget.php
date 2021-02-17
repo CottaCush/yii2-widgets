@@ -18,18 +18,18 @@ class BaseModalWidget extends BaseWidget
     public $title;
     public $id;
     public $route;
-    public $footerSubmit = 'Submit';
-    public $footerCancel = 'Cancel';
+    public string $footerSubmit = 'Submit';
+    public string $footerCancel = 'Cancel';
     public $formMethod;
     public $formOptions;
     public $modalHeaderClass;
-    public $modalCancelFooterClass = 'btn btn-default';
-    public $modalSubmitFooterClass = 'btn btn-primary';
+    public string $modalCancelFooterClass = 'btn btn-default';
+    public string $modalSubmitFooterClass = 'btn btn-primary';
 
     /** @var  ActiveForm $form */
-    protected $form;
+    protected ActiveForm $form;
 
-    public function run()
+    public function run(): string
     {
         $this->registerAssets();
         $this->beginModal();

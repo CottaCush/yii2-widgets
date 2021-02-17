@@ -14,15 +14,15 @@ use CottaCush\Yii2\Helpers\Html;
  */
 class EmptyStateWidget extends BaseWidget
 {
-    public $icon;
-    public $title;
-    public $description;
-    public $buttonClass = 'btn btn-primary';
+    public string $icon;
+    public string $title;
+    public string $description;
+    public string $buttonClass = 'btn btn-primary';
 
-    public $showButton = true;
-    public $button;
+    public bool $showButton = true;
+    public mixed $button;
 
-    public function run()
+    public function run(): string
     {
         echo Html::beginTag('section', ['class' => 'empty-state']);
 

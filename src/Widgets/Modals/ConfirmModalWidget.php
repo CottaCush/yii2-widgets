@@ -14,14 +14,14 @@ use CottaCush\Yii2\Widgets\Bootstrap\Modal;
 class ConfirmModalWidget extends BaseModalWidget
 {
     public $modalId;
-    public $footerSubmit = 'Proceed';
-    public $footerCancel = 'Cancel';
+    public string $footerSubmit = 'Proceed';
+    public string $footerCancel = 'Cancel';
     public $route = '';
     public $formMethod = 'post';
     public $formOptions = ['class' => 'disable-submit-buttons'];
 
-    public $modalSubmitFooterClass = 'btn btn-danger';
-    public $modalCancelFooterClass = 'btn btn-default';
+    public string $modalSubmitFooterClass = 'btn btn-danger';
+    public string $modalCancelFooterClass = 'btn btn-default';
 
     public function beginModal()
     {

@@ -2,6 +2,7 @@
 
 namespace CottaCush\Yii2\Helpers;
 
+use Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html as YiiHtml;
 
@@ -25,7 +26,7 @@ class Html extends YiiHtml
      *
      * @return string the generated HTML for the icon.
      */
-    public static function baseIcon($name = '', $options = [])
+    public static function baseIcon($name = '', $options = []): string
     {
         $tag = ArrayHelper::remove($options, 'tag', 'span');
         $classPrefix = ArrayHelper::remove($options, 'prefix', '');
@@ -41,7 +42,7 @@ class Html extends YiiHtml
      * @return string the generated HTML for the FontAwesome icon
      * @see Html::baseIcon()
      */
-    public static function fontAwesomeIcon($name = '', $options = [])
+    public static function fontAwesomeIcon($name = '', $options = []): string
     {
         $options['prefix'] = 'fa fa-';
         return static::baseIcon($name, $options);
@@ -54,7 +55,7 @@ class Html extends YiiHtml
      * @param array $options
      * @return string
      */
-    public static function faIcon($name = '', $options = [])
+    public static function faIcon($name = '', $options = []): string
     {
         return static::fontAwesomeIcon($name, $options);
     }
@@ -66,7 +67,7 @@ class Html extends YiiHtml
      * @return string the generated HTML for the IonIcons icon
      * @see Html::baseIcon()
      */
-    public static function ionIcon($name = '', $options = [])
+    public static function ionIcon($name = '', $options = []): string
     {
         $options['prefix'] = 'ion ion-';
         return static::baseIcon($name, $options);
@@ -79,7 +80,7 @@ class Html extends YiiHtml
      * @return string the generated HTML for the glyphIcon icon
      * @see Html::baseIcon()
      */
-    public static function glyphIcon($name = '', $options = [])
+    public static function glyphIcon($name = '', $options = []): string
     {
         $options['prefix'] = 'glyphicon glyphicon-';
         return static::baseIcon($name, $options);
@@ -93,9 +94,10 @@ class Html extends YiiHtml
      *   - 'fallback': bool|string the fallback image to use. If set to true, replace the image url extension with fallbackExt.
      *   - 'fallbackExt' string the fallback extension, default is 'png'.
      * @return string
+     * @throws Exception
      * @see YiiHtml::img()
      */
-    public static function svgImg($src, $options = [])
+    public static function svgImg(array|string $src, $options = []): string
     {
         $fallback = ArrayHelper::getValue($options, 'fallback', true);
         $fallbackExt = ArrayHelper::getValue($options, 'fallbackExt', 'png');
@@ -117,7 +119,7 @@ class Html extends YiiHtml
      * @param array $options
      * @return string
      */
-    public static function beginDiv($classNames = [], $options = [])
+    public static function beginDiv($classNames = [], $options = []): string
     {
         self::addCssClass($options, $classNames);
         return self::beginTag('div', $options) . "\n";
@@ -126,7 +128,7 @@ class Html extends YiiHtml
     /**
      * @return string
      */
-    public static function endDiv()
+    public static function endDiv(): string
     {
         return self::endTag('div') . "\n";
     }

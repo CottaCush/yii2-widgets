@@ -23,19 +23,19 @@ use yii\helpers\Html;
  */
 class DropzoneWidget extends BaseWidget
 {
-    public $imageUrl = null;
-    public $uploadUrl;
-    public $imageName;
-    public $acceptedExtensions = ['.jpg', '.jpeg', '.png'];
-    public $maxFiles = 1;
-    public $maxFileSize = 2;
-    public $addRemoveLinks = true;
-    public $previewTemplate;
-    public $targetUrlInputId;
-    public $urlKey = 'url';
-    public $errorMessageKey = 'message';
-    public $uploadPrompt = 'Click to add an image or drag image here';
-    public $removeImageLabel = 'Remove image';
+    public string|null $imageUrl = null;
+    public string|null $uploadUrl;
+    public string|null $imageName;
+    public array $acceptedExtensions = ['.jpg', '.jpeg', '.png'];
+    public int $maxFiles = 1;
+    public int $maxFileSize = 2;
+    public bool $addRemoveLinks = true;
+    public string $previewTemplate;
+    public string $targetUrlInputId;
+    public string $urlKey = 'url';
+    public string $errorMessageKey = 'message';
+    public string $uploadPrompt = 'Click to add an image or drag image here';
+    public string $removeImageLabel = 'Remove image';
 
     public function init()
     {
@@ -86,7 +86,7 @@ class DropzoneWidget extends BaseWidget
             ]));
     }
 
-    private function getDefaultPreviewTemplate()
+    private function getDefaultPreviewTemplate(): string
     {
         $previewTemplate = $this->beginDiv('dz-preview dz-image-preview');
         $previewTemplate .= $this->beginDiv('dz-image');

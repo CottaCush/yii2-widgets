@@ -4,6 +4,7 @@ namespace CottaCush\Yii2\Widgets\Bootstrap;
 
 use CottaCush\Yii2\Assets\BootstrapPluginAsset;
 use yii\helpers\Json;
+use yii\web\View;
 
 /**
  * BootstrapWidgetTrait is the trait, which provides basic for all bootstrap widgets features.
@@ -34,14 +35,14 @@ trait BootstrapWidgetTrait
      * For example, [this page](http://getbootstrap.com/javascript/#modals) shows
      * how to use the "Modal" plugin and the supported options (e.g. "remote").
      */
-    public $clientOptions = [];
+    public array $clientOptions = [];
     /**
      * @var array the event handlers for the underlying Bootstrap JS plugin.
      * Please refer to the corresponding Bootstrap plugin Web page for possible events.
      * For example, [this page](http://getbootstrap.com/javascript/#modals) shows
      * how to use the "Modal" plugin and the supported events (e.g. "shown").
      */
-    public $clientEvents = [];
+    public array $clientEvents = [];
 
 
     /**
@@ -61,7 +62,7 @@ trait BootstrapWidgetTrait
      * Registers a specific Bootstrap plugin and the related events
      * @param string $name the name of the Bootstrap plugin
      */
-    protected function registerPlugin($name)
+    protected function registerPlugin(string $name)
     {
         $view = $this->getView();
 
@@ -95,8 +96,8 @@ trait BootstrapWidgetTrait
     }
 
     /**
-     * @return \yii\web\View the view object that can be used to render views or view files.
+     * @return View the view object that can be used to render views or view files.
      * @see yii\base\Widget::getView()
      */
-    abstract function getView();
+    abstract function getView(): View;
 }

@@ -17,7 +17,7 @@ class DropzoneBaseAsset extends AssetBundle
         'dropzone.min.js'
     ];
 
-    public $productionJs = [
+    public array $productionJs = [
         'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js'
     ];
 }

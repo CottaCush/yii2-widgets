@@ -41,27 +41,27 @@ class Modal extends Widget
     /**
      * @var string the header content in the modal window.
      */
-    public $header;
+    public string $header;
     /**
-     * @var string additional header options
+     * @var array additional header options
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      * @since 2.0.1
      */
-    public $headerOptions;
+    public array $headerOptions;
     /**
      * @var string the footer content in the modal window.
      */
-    public $footer;
+    public string $footer;
     /**
-     * @var string additional footer options
+     * @var array additional footer options
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      * @since 2.0.1
      */
-    public $footerOptions;
+    public array $footerOptions;
     /**
      * @var string the modal size. Can be [[SIZE_LARGE]] or [[SIZE_SMALL]], or empty for default.
      */
-    public $size;
+    public string $size;
     /**
      * @var array|false the options for rendering the close button tag.
      * The close button is displayed in the header of the modal window. Clicking
@@ -76,9 +76,9 @@ class Modal extends Widget
      * Please refer to the [Modal plugin help](http://getbootstrap.com/javascript/#modals)
      * for the supported HTML attributes.
      */
-    public $closeButton = [];
+    public false|array $closeButton = [];
     /**
-     * @var array the options for rendering the toggle button tag.
+     * @var array|bool the options for rendering the toggle button tag.
      * The toggle button is used to toggle the visibility of the modal window.
      * If this property is false, no toggle button will be rendered.
      *
@@ -91,7 +91,7 @@ class Modal extends Widget
      * Please refer to the [Modal plugin help](http://getbootstrap.com/javascript/#modals)
      * for the supported HTML attributes.
      */
-    public $toggleButton = false;
+    public bool|array $toggleButton = false;
 
 
     /**
@@ -114,7 +114,7 @@ class Modal extends Widget
     /**
      * Renders the widget.
      */
-    public function run()
+    public function run(): string
     {
         echo "\n" . $this->renderBodyEnd();
         echo "\n" . $this->renderFooter();
@@ -127,9 +127,9 @@ class Modal extends Widget
 
     /**
      * Renders the header HTML markup of the modal
-     * @return string the rendering result
+     * @return string|null the rendering result
      */
-    protected function renderHeader()
+    protected function renderHeader(): ?string
     {
         $button = $this->renderCloseButton();
         if ($button !== null) {
@@ -147,7 +147,7 @@ class Modal extends Widget
      * Renders the opening tag of the modal body.
      * @return string the rendering result
      */
-    protected function renderBodyBegin()
+    protected function renderBodyBegin(): string
     {
         return Html::beginTag('div', ['class' => 'modal-body']);
     }
@@ -156,16 +156,16 @@ class Modal extends Widget
      * Renders the closing tag of the modal body.
      * @return string the rendering result
      */
-    protected function renderBodyEnd()
+    protected function renderBodyEnd(): string
     {
         return Html::endTag('div');
     }
 
     /**
      * Renders the HTML markup for the footer of the modal
-     * @return string the rendering result
+     * @return string|null the rendering result
      */
-    protected function renderFooter()
+    protected function renderFooter(): ?string
     {
         if ($this->footer !== null) {
             Html::addCssClass($this->footerOptions, ['widget' => 'modal-footer']);
@@ -177,9 +177,9 @@ class Modal extends Widget
 
     /**
      * Renders the toggle button.
-     * @return string the rendering result
+     * @return string|null the rendering result
      */
-    protected function renderToggleButton()
+    protected function renderToggleButton(): ?string
     {
         if (($toggleButton = $this->toggleButton) !== false) {
             $tag = ArrayHelper::remove($toggleButton, 'tag', 'button');
@@ -196,9 +196,9 @@ class Modal extends Widget
 
     /**
      * Renders the close button.
-     * @return string the rendering result
+     * @return string|null the rendering result
      */
-    protected function renderCloseButton()
+    protected function renderCloseButton(): ?string
     {
         if (($closeButton = $this->closeButton) !== false) {
             $tag = ArrayHelper::remove($closeButton, 'tag', 'button');
