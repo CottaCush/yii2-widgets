@@ -3,6 +3,7 @@
 namespace CottaCush\Yii2\Widgets\Bootstrap;
 
 use CottaCush\Yii2\Assets\BootstrapPluginAsset;
+use Exception;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use CottaCush\Yii2\Helpers\Html;
@@ -47,17 +48,17 @@ class Dropdown extends Widget
      *
      * To insert divider use `<li role="presentation" class="divider"></li>`.
      */
-    public $items = [];
+    public array $items = [];
     /**
      * @var boolean whether the labels for header items should be HTML-encoded.
      */
-    public $encodeLabels = true;
+    public bool $encodeLabels = true;
     /**
      * @var array|null the HTML attributes for sub-menu container tags.
      * If not set - [[options]] value will be used for it.
      * @since 2.0.5
      */
-    public $submenuOptions;
+    public ?array $submenuOptions;
 
 
     /**
@@ -78,8 +79,9 @@ class Dropdown extends Widget
 
     /**
      * Renders the widget.
+     * @throws InvalidConfigException
      */
-    public function run()
+    public function run(): string
     {
         BootstrapPluginAsset::register($this->getView());
         $this->registerClientEvents();
@@ -92,8 +94,9 @@ class Dropdown extends Widget
      * @param array $options the container HTML attributes
      * @return string the rendering result.
      * @throws InvalidConfigException if the label option is not specified in one of the items.
+     * @throws Exception
      */
-    protected function renderItems($items, $options = [])
+    protected function renderItems(array $items, $options = []): string
     {
         $lines = [];
         foreach ($items as $item) {

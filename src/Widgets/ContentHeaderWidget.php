@@ -3,6 +3,7 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Helpers\Html;
+use Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -14,12 +15,15 @@ use yii\widgets\Breadcrumbs;
  */
 class ContentHeaderWidget extends BaseContentHeaderButton
 {
-    public $title;
-    public $breadcrumbs;
-    public $buttonClass = 'btn btn-sm content-header-btn';
-    public $contentRight;
-    public $icon;
+    public string $title;
+    public array $breadcrumbs;
+    public string $buttonClass = 'btn btn-sm content-header-btn';
+    public string $contentRight;
+    public string $icon;
 
+    /**
+     * @throws Exception
+     */
     public function init()
     {
         parent::init();
@@ -39,7 +43,11 @@ class ContentHeaderWidget extends BaseContentHeaderButton
         $this->setButton();
     }
 
-    public function run()
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function run(): string
     {
         echo Html::beginTag('section', ['class' => 'content-header']);
         echo $this->beginDiv(' clearfix');

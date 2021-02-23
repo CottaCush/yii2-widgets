@@ -14,7 +14,7 @@ class DropzoneBasicAsset extends DropzoneBaseAsset
         'basic.min.css'
     ];
 
-    public $productionCss = [
+    public array $productionCss = [
         'https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/basic.min.css'
     ];
 }

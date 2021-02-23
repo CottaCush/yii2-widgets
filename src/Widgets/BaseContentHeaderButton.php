@@ -3,6 +3,7 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Helpers\Html;
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -12,9 +13,12 @@ use yii\helpers\ArrayHelper;
  */
 class BaseContentHeaderButton extends BaseWidget
 {
-    public $button;
-    public $buttonClass;
+    public string|array $button;
+    public string $buttonClass;
 
+    /**
+     * @throws Exception
+     */
     protected function setButton()
     {
         if (is_string($this->button)) {
@@ -33,6 +37,10 @@ class BaseContentHeaderButton extends BaseWidget
         $this->buildButton($buttonDetails);
     }
 
+    /**
+     * @param $buttonArray
+     * @throws Exception
+     */
     private function buildButton($buttonArray)
     {
         if (!is_array($buttonArray)) {

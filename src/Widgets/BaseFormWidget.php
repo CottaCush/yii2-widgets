@@ -13,10 +13,10 @@ use yii\helpers\Url;
 class BaseFormWidget extends BaseWidget
 {
     public $formRoute;
-    public $formOptions = [];
-    public $formMethod = 'post';
+    public array $formOptions = [];
+    public string $formMethod = 'post';
 
-    public function run()
+    public function run(): string
     {
         $this->beginForm();
         $this->renderContents();

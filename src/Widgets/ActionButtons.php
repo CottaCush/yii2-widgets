@@ -3,6 +3,7 @@
 namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Helpers\Html;
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -22,43 +23,43 @@ class ActionButtons extends BaseWidget
      *      'visible' => true // {bool} determine if the property should be shown. This property
      * ]
      */
-    public $actions = [];
+    public array $actions = [];
     /**
      * @var int $maxNoOfLinks the maximum number of buttons before generating an actions button dropdown
      */
-    public $maxNoOfLinks = 1;
+    public int $maxNoOfLinks = 1;
     /**
      * @var bool $groupLinks group action links in a .btn-group
      */
-    public $groupLinks = false;
+    public bool $groupLinks = false;
     /**
      * @var array $linkClasses classes to apply to each action link, and the action button
      */
-    public $linkClasses = ['base' => 'btn', 'size' => 'btn-sm', 'modifier' => 'btn-default'];
+    public array $linkClasses = ['base' => 'btn', 'size' => 'btn-sm', 'modifier' => 'btn-default'];
     /**
      * @var string the actions button dropdown label
      */
-    public $actionsButtonLabel = 'Actions ';
+    public string $actionsButtonLabel = 'Actions ';
     /**
      * @var string caret html for the action button
      */
-    public $caretHtml = '<span class="caret"></span>';
+    public string $caretHtml = '<span class="caret"></span>';
     /**
      * @var string $actionLabelProperty configure the action property to use as a label
      */
-    protected $actionLabelProperty = 'label';
+    protected string $actionLabelProperty = 'label';
     /**
      * @var string $actionUrlProperty configure the action property to use as the link's url
      */
-    protected $actionUrlProperty = 'url';
+    protected string $actionUrlProperty = 'url';
     /**
      * @var string $actionOptionsProperty configure the action property to use as options
      */
-    protected $actionOptionsProperty = 'options';
+    protected string $actionOptionsProperty = 'options';
     /**
      * @var array $actionButtonOptions options for the action button
      */
-    protected $actionButtonOptions = [
+    protected array $actionButtonOptions = [
         'class' => ['widget' => 'dropdown-toggle'],
         'data-toggle' => 'dropdown',
         'aria-haspopup' => 'true',
@@ -67,19 +68,26 @@ class ActionButtons extends BaseWidget
     /**
      * @var array $visibleActions actions that have been marked as visible
      */
-    private $visibleActions = [];
+    private array $visibleActions = [];
     /**
      * @var bool $shouldRenderActionDropdown render the action button dropdown if set to true
      */
-    private $shouldRenderActionDropdown;
+    private bool $shouldRenderActionDropdown;
 
+    /**
+     * @throws Exception
+     */
     public function init()
     {
         parent::init();
         $this->initProperties();
     }
 
-    public function run()
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function run(): string
     {
         if ($this->shouldRenderActionDropdown) {
             $this->renderActionButton();
@@ -88,6 +96,9 @@ class ActionButtons extends BaseWidget
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function initProperties()
     {
         foreach ($this->actions as $action) {
@@ -105,6 +116,7 @@ class ActionButtons extends BaseWidget
 
     /**
      * Render the actions as separate links
+     * @throws Exception
      */
     private function renderActions()
     {
@@ -126,6 +138,7 @@ class ActionButtons extends BaseWidget
 
     /**
      * Render the action button dropdown
+     * @throws Exception
      */
     private function renderActionButton()
     {

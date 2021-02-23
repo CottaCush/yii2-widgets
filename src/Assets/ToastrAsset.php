@@ -17,10 +17,10 @@ class ToastrAsset extends AssetBundle
     public $js = [
         'toastr.min.js'
     ];
-    public $productionCss = [
+    public array $productionCss = [
         'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css'
     ];
-    public $productionJs = [
+    public array $productionJs = [
         'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js'
     ];
     public $depends = [

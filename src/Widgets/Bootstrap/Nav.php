@@ -2,6 +2,7 @@
 
 namespace CottaCush\Yii2\Widgets\Bootstrap;
 
+use Exception;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
@@ -65,41 +66,41 @@ class Nav extends Widget
      *
      * If a menu item is a string, it will be rendered directly without HTML encoding.
      */
-    public $items = [];
+    public array $items = [];
     /**
      * @var boolean whether the nav items labels should be HTML-encoded.
      */
-    public $encodeLabels = true;
+    public bool $encodeLabels = true;
     /**
      * @var boolean whether to automatically activate items according to whether their route setting
      * matches the currently requested route.
      * @see isItemActive
      */
-    public $activateItems = true;
+    public bool $activateItems = true;
     /**
      * @var boolean whether to activate parent menu items when one of the corresponding child menu items is active.
      */
-    public $activateParents = false;
+    public bool $activateParents = false;
     /**
      * @var string the route used to determine if a menu item is active or not.
      * If not set, it will use the route of the current request.
      * @see params
      * @see isItemActive
      */
-    public $route;
+    public string $route;
     /**
      * @var array the parameters used to determine if a menu item is active or not.
      * If not set, it will use `$_GET`.
      * @see route
      * @see isItemActive
      */
-    public $params;
+    public array $params;
     /**
      * @var string this property allows you to customize the HTML which is used to generate the drop down caret symbol,
      * which is displayed next to the button text to indicate the drop down functionality.
      * Defaults to `null` which means `<b class="caret"></b>` will be used. To disable the caret, set this property to be an empty string.
      */
-    public $dropDownCaret;
+    public string $dropDownCaret;
 
 
     /**
@@ -123,15 +124,16 @@ class Nav extends Widget
     /**
      * Renders the widget.
      */
-    public function run()
+    public function run(): string
     {
         return $this->renderItems();
     }
 
     /**
      * Renders widget items.
+     * @throws InvalidConfigException
      */
-    public function renderItems()
+    public function renderItems(): string
     {
         $items = [];
         foreach ($this->items as $i => $item) {
@@ -149,8 +151,9 @@ class Nav extends Widget
      * @param string|array $item the item to render.
      * @return string the rendering result.
      * @throws InvalidConfigException
+     * @throws Exception
      */
-    public function renderItem($item)
+    public function renderItem(array|string $item): string
     {
         if (is_string($item)) {
             return $item;
@@ -201,9 +204,10 @@ class Nav extends Widget
      * @param array $items the given items. Please refer to [[Dropdown::items]] for the array structure.
      * @param array $parentItem the parent item information. Please refer to [[items]] for the structure of this array.
      * @return string the rendering result.
+     * @throws Exception
      * @since 2.0.1
      */
-    protected function renderDropdown($items, $parentItem)
+    protected function renderDropdown(array $items, array $parentItem): string
     {
         return Dropdown::widget([
             'options' => ArrayHelper::getValue($parentItem, 'dropDownOptions', []),
@@ -220,7 +224,7 @@ class Nav extends Widget
      * @param boolean $active should the parent be active too
      * @return array @see items
      */
-    protected function isChildActive($items, &$active)
+    protected function isChildActive(array $items, bool &$active): array
     {
         foreach ($items as $i => $child) {
             if (ArrayHelper::remove($items[$i], 'active', false) || $this->isItemActive($child)) {
@@ -243,7 +247,7 @@ class Nav extends Widget
      * @param array $item the menu item to be checked
      * @return boolean whether the menu item is active
      */
-    protected function isItemActive($item)
+    protected function isItemActive(array $item): bool
     {
         if (isset($item['url']) && is_array($item['url']) && isset($item['url'][0])) {
             $route = $item['url'][0];

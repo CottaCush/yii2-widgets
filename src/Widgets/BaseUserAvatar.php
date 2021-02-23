@@ -4,6 +4,7 @@ namespace CottaCush\Yii2\Widgets;
 
 use CottaCush\Yii2\Assets\LetterAvatarAsset;
 use CottaCush\Yii2\Helpers\Html;
+use Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -17,44 +18,47 @@ class BaseUserAvatar extends BaseWidget
     /**
      * @var array $user the user model
      */
-    public $user = [];
+    public array $user = [];
     /**
      * @var int $size the size of the image (in pixels)
      */
-    public $size;
+    public int $size;
     /**
      * @var array $options
      */
-    public $options = [];
+    public array $options = [];
     /**
      * @var string|array $baseClass the base class to use for the avatar
      */
-    protected $baseClass = [];
+    protected array|string $baseClass = [];
     /**
      * @var string $fallbackImage a fallback image to use if the avatar doesn't load
      */
-    protected $fallbackImage;
+    protected string $fallbackImage;
     /**
      * @var string $nameProperty the property name to use to access the user's name from the user model.
      */
-    protected $nameProperty = 'fullName';
+    protected string $nameProperty = 'fullName';
     /**
      * @var string $avatarProperty the property name to use to access the user's avatar from the user model.
      */
-    protected $avatarProperty = 'avatar';
+    protected string $avatarProperty = 'avatar';
     /**
      * @var string $name the user's name.
      */
-    private $name;
+    private string $name;
     /**
      * @var string the user avatar image
      */
-    private $image;
+    private string $image;
     /**
      * @var int $id the user id
      */
-    private $id;
+    private int $id;
 
+    /**
+     * @throws Exception
+     */
     public function init()
     {
         parent::init();
@@ -85,7 +89,7 @@ class BaseUserAvatar extends BaseWidget
         }
     }
 
-    public function run()
+    public function run(): string
     {
         return Html::img($this->image, $this->options);
     }
